@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lenecoproekt_chat">ЛенЭкоПроект-чат</string>
+    <string name="app_name">ЛенЭкоПроект чат</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="save_nick">Сохранить имя</string>
+    <string name="auto_login">Подключаться автоматически</string>
+    <string name="login_in_chat">Войти в чат</string>
+    <string name="registration">Регистрация</string>
+    <string name="nickname">Никнейм</string>
+    <string name="re_enter_your_password">Введите пароль еще раз</string>
+    <string name="registr">Зарегистрировать</string>
+</resources>

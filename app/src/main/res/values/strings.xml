@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LenEcoProektChat</string>
+    <string name="lenecoproekt_chat">LenEcoProekt Chat</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="save_nick">Save Nick</string>
+    <string name="auto_login">Auto Login</string>
+    <string name="login_in_chat">Login in Chat</string>
+    <string name="registration">Registration</string>
+    <string name="nickname">Nickname</string>
+    <string name="re_enter_your_password">Re-enter your password</string>
+    <string name="registr">Registr</string>
+</resources>

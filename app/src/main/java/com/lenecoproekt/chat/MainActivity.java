@@ -2,12 +2,9 @@ package com.lenecoproekt.chat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +17,15 @@ public class MainActivity extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Registraion_Activity.class));
+                startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+            }
+        });
+
+        Button connectBtn = findViewById(R.id.loginIn);
+        connectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ChatActivity.class));
             }
         });
     }

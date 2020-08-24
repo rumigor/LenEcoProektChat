@@ -34,42 +34,30 @@ public class RegistrationActivity extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                login = findViewById(R.id.loginFieldReg);
+                nickname = findViewById(R.id.nicknameFieldReg);
                 pass1 = findViewById(R.id.pass1);
                 pass2 = findViewById(R.id.pass2);
-                String p1 = pass1.getEditableText().toString();
-                String p2 = pass2.getEditableText().toString();
+                String l = login.getEditableText().toString().trim();
+                String nick = nickname.getEditableText().toString().trim();
+                String p1 = pass1.getEditableText().toString().trim();
+                String p2 = pass2.getEditableText().toString().trim();
+                if (login.getEditableText().toString().equals("") || nickname.getEditableText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Все поля должны быть заполнены!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (pass1.getText() != null & pass2.getText() != null & p1.equals(p2) ) {
                     try {
-                        serverConnection = ServerConnection.getServerConnection();
-                        login = findViewById(R.id.loginFieldReg);
-                        nickname = findViewById(R.id.nicknameFieldReg);
-                        serverConnection.out.writeUTF(String.format("/reg %s %s %s", login.getEditableText().toString(), p1, nickname.getEditableText().toString()));
-                    } catch (IOException e) {
+                        serverConnection = new ServerConnection();
+                        String msg = serverConnection.registration(l, nick, p1);
+                        if (msg.equals("Регистрация прошла успешно")) {
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        else Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                    } catch (IOException | InterruptedException e) {
                         e.printStackTrace();
                     }
-
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                //цикл аутентификации
-                                while (true) {
-                                    String str = serverConnection.in.readUTF();
-                                    if (str.startsWith("/regresult ")) {
-                                        String result = str.split("\\s")[1];
-                                        if (result.equals("ok")) {
-                                            Toast.makeText(getApplicationContext(), "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
-                                            finish();
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "Регистрация не получилась, возможно логин или никнейм заняты", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
                 } else Toast.makeText(getApplicationContext(), "пароли не совпадают", Toast.LENGTH_SHORT).show();
             }
         });
